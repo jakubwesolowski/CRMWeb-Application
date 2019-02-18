@@ -1,0 +1,30 @@
+.fa-2x {
+  font-size: 1.4em;
+}
+
+.myCenter{
+  position: relative;
+  top: 3px;
+  transition: all .2s ease-in-out;
+}
+
+.myCenter:hover{
+  color: dodgerblue;
+}
+
+.myMargin{
+  margin-left: 10px;
+}
+
+.toLeft{
+  float: left;
+}
+
+.weather {
+  margin: 0 auto;
+}
+
+/*.badge-secondary{*/
+  /*float: left;*/
+/*}*/
+

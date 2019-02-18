@@ -1,0 +1,20 @@
+<div class="card text-center">
+  <div class="card-header">
+    Settings
+  </div>
+  <div class="card-body">
+
+    <div class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" id="customCheck1" name="newsletter" [(ngModel)]="newsletter">
+      <label class="custom-control-label" for="customCheck1">Daily newsletter at 9 am</label>
+    </div>
+
+
+    <br>
+    <button type="button" class="btn btn-success" (click)="saveSettings()">Save</button>
+
+
+
+  </div>
+</div>
+

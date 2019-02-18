@@ -1,23 +1,25 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h2>
-    Welcome to SimpleTodo
-  </h2>
+﻿<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+  <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true" style="color: #347c57; margin: 0 8px 0 0"></i>
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" routerLink="/">Home</a>
+    <a class="nav-item nav-link" routerLink="/settings">Settings</a>
+    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+  </div>
+</nav>
+
+<div class="jumbotron">
+  <!--<div class="container">-->
+  <!--<div class="row">-->
+  <!--<div class="col-sm-6 offset-sm-3">-->
+  <alert></alert>
+  <router-outlet></router-outlet>
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
 </div>
 
-<ul class="nav nav-tabs">
-  <!--<li class="nav-item">-->
-    <!--<a routerLink="/home" class="nav-link">Home</a>-->
-  <!--</li>-->
-  <!--<li class="nav-item">-->
-    <!--<a routerLink="/todos" class="nav-link">Todos</a>-->
-  <!--</li>-->
-  <!--<li class="nav-item">-->
-    <!--<a class="nav-link" href="/">Login</a>-->
-  <!--</li>-->
-  <!--<li class="nav-item">-->
-    <!--<a class="nav-link" href="#">Logout</a>-->
-  <!--</li>-->
-</ul>
-
-<router-outlet></router-outlet>
+<div class="text-center">
+  <p>
+    Created by Jakub Wesołowski
+  </p>
+</div>
