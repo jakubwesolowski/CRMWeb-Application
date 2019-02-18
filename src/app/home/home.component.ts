@@ -124,7 +124,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   finishTask(taskToFinish: Task): void {
     taskToFinish.completed = true;
     this.taskService.updateTask(taskToFinish, this.currentProject.id).subscribe((task: Task) => {
-
       if (task.completed) {
         this.currentProject.tasks = this.currentProject.tasks.filter(value => value.id !== task.id);
       }
@@ -198,18 +197,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   getTodayTasks() {
     if (this.currentProject.tasks !== null) {
       return this.currentProject.tasks
+        .filter(value => !value.completed)
         .filter(value => value.reminders !== null)
-        // .filter(value => value.reminders[0] !== null)
         .filter(value => value.reminders[0].date !== null)
         .filter(value => value.reminders[0].date === this.todayDate());
+
     }
   }
 
   getNext7Days() {
     if (this.currentProject.tasks !== null) {
       return this.currentProject.tasks
+        .filter(value => !value.completed)
         .filter(value => value.reminders !== null)
-        // .filter(value => value.reminders[0].date !== null)
         .filter(value => value.reminders[0].date !== this.todayDate());
     }
   }
