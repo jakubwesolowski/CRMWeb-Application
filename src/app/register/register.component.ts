@@ -1,7 +1,8 @@
 ﻿import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AlertService, UserService, AuthenticationService} from '@app/_services';
+import {AlertService, AuthenticationService, UserService} from '@app/_services';
+import {first} from 'rxjs/operators';
 
 @Component({templateUrl: 'register.component.html'})
 export class RegisterComponent implements OnInit {
@@ -46,16 +47,20 @@ export class RegisterComponent implements OnInit {
         }
 
         this.loading = true;
+        console.log(JSON.stringify(this.registerForm.value));
         this.userService.register(this.registerForm.value)
+            .pipe(first())
             .subscribe(
-                response => {
-                    console.log('Registered!');
-                    this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/login']);
+                () => {
                 },
                 error => {
-                    this.alertService.error(error);
-                    this.loading = false;
+                    if (error.status === 200) {
+                        this.alertService.success(String(error.error.text), true);
+                        this.router.navigate(['/login']);
+                    } else {
+                        this.alertService.error(String(error.error));
+                        this.loading = false;
+                    }
                 });
     }
 }
