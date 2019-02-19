@@ -166,7 +166,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
         this.taskService.updateTask(this.editedTask, this.currentProject.id).subscribe((task: Task) => {
             const index = this.currentProject.tasks.findIndex(value => value.id === task.id);
-            task.project = this.currentProject;
             this.currentProject.tasks[index] = task;
         });
 
@@ -219,7 +218,6 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.projects = this.projects.filter(value => value.id !== res.id);
             }
         });
-
     }
 
     private getDismissReason(reason: any): string {
