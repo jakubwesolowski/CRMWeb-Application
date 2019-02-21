@@ -24,6 +24,27 @@
     margin: 0 auto;
 }
 
+.task {
+    transition: all .2s ease-in-out;
+}
+
+.task:hover {
+    transform: scale(1.01);
+}
+
+
+.taskVisible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 2s linear;
+}
+
+.taskHidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
+}
+
 /*.badge-secondary{*/
 /*float: left;*/
 /*}*/

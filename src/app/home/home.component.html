@@ -52,7 +52,7 @@
                         <li class="list-group-item" *ngFor="let task of getTodayTasks()" [contextMenu]="basicMenu"
                             [contextMenuSubject]="task">
 
-                            <div *ngIf="task.reminders !== null && task.reminders[0].date == todayDate()">
+                            <div class="task" *ngIf="task.reminders !== null && task.reminders[0].date == todayDate()">
 
                                 <i (click)="finishTask(task)" class="fa fa-check-circle fa-2x myCenter"></i>
                                 <span class="myMargin">{{task.name}}</span>
@@ -118,8 +118,7 @@
                         <li class="list-group-item" *ngFor="let task of getNext7Days()" [contextMenu]="basicMenu"
                             [contextMenuSubject]="task">
 
-                            <div>
-
+                            <div class="task">
                                 <i (click)="finishTask(task)" class="fa fa-check-circle fa-2x myCenter"></i>
                                 <span class="myMargin">{{task.name}}</span>
                                 <span class="myMargin badge badge-light">{{task.description}}</span>
