@@ -1,25 +1,25 @@
-﻿<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-  <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true" style="color: #347c57; margin: 0 8px 0 0"></i>
-  <div class="navbar-nav">
-    <a class="nav-item nav-link" routerLink="/">Home</a>
-    <a class="nav-item nav-link" routerLink="/settings">Settings</a>
-    <a class="nav-item nav-link" (click)="logout()">Logout</a>
-  </div>
+﻿<nav *ngIf="currentUser" class="navbar navbar-expand navbar-dark bg-dark">
+    <i aria-hidden="true" class="fa fa-calendar-check-o fa-2x" style="color: #347c57; margin: 0 8px 0 0"></i>
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/">Home</a>
+        <a class="nav-item nav-link" routerLink="/settings">Settings</a>
+        <a (click)="logout()" class="nav-item nav-link">Logout</a>
+    </div>
 </nav>
 
 <div class="jumbotron">
-  <!--<div class="container">-->
-  <!--<div class="row">-->
-  <!--<div class="col-sm-6 offset-sm-3">-->
-  <alert></alert>
-  <router-outlet></router-outlet>
-  <!--</div>-->
-  <!--</div>-->
-  <!--</div>-->
+    <!--<div class="container">-->
+    <!--<div class="row">-->
+    <!--<div class="col-sm-6 offset-sm-3">-->
+    <alert></alert>
+    <router-outlet></router-outlet>
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
 </div>
 
 <div class="text-center">
-  <p>
-    Created by Jakub Wesołowski
-  </p>
+    <p>
+        Created by Jakub Wesołowski
+    </p>
 </div>

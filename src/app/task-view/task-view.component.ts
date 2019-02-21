@@ -15,13 +15,13 @@ import {Priority} from '@app/_models/priority';
 export class TaskViewComponent implements OnInit {
 
     @Input() public tasks: Task[];
-    @Input() private projectId: number;
     @ViewChild('taskMenu') public taskMenu: ContextMenuComponent;
     priority = Priority;
     priorityValues = Object.values(Priority).filter(value => typeof value === 'string') as string[];
     datePick: NgbDateStruct = {year: 0, month: 0, day: 0};
     editedTask: Task;
     closeResult: string;
+    @Input() private projectId: number;
 
     constructor(
         private taskService: TaskService,
@@ -55,16 +55,6 @@ export class TaskViewComponent implements OnInit {
         }, (reason) => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         });
-    }
-
-    private getDismissReason(reason: any): string {
-        if (reason === ModalDismissReasons.ESC) {
-            return 'by pressing ESC';
-        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-            return 'by clicking on a backdrop';
-        } else {
-            return `with: ${reason}`;
-        }
     }
 
     saveEditedTask() {
@@ -102,5 +92,15 @@ export class TaskViewComponent implements OnInit {
         const todayDate = new Date();
         const tomorrow = todayDate.setDate(todayDate.getDate() + 1);
         return formatDate(tomorrow, 'yyyy/MM/dd', 'en');
+    }
+
+    private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        } else {
+            return `with: ${reason}`;
+        }
     }
 }

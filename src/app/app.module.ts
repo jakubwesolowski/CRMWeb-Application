@@ -23,37 +23,37 @@ import {TaskViewComponent} from './task-view/task-view.component';
 ;
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    NgbModule,
-    FormsModule,
-    routing,
-    ContextMenuModule.forRoot({useBootstrap4: true}),
-    AngularWeatherWidgetModule.forRoot({
-      key: 'a2c20eb7b45259cbe879addf87f11b2e',
-      name: WeatherApiName.OPEN_WEATHER_MAP,
-      baseUrl: 'http://api.openweathermap.org/data/2.5'
-    })
-  ],
-  declarations: [
-    AppComponent,
-    AlertComponent,
-    HomeComponent,
-    LoginComponent,
-    RegisterComponent,
-    SettingsComponent
-      ,
-      TaskViewComponent],
-  providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        NgbModule,
+        FormsModule,
+        routing,
+        ContextMenuModule.forRoot({useBootstrap4: true}),
+        AngularWeatherWidgetModule.forRoot({
+            key: 'a2c20eb7b45259cbe879addf87f11b2e',
+            name: WeatherApiName.OPEN_WEATHER_MAP,
+            baseUrl: 'http://api.openweathermap.org/data/2.5'
+        })
+    ],
+    declarations: [
+        AppComponent,
+        AlertComponent,
+        HomeComponent,
+        LoginComponent,
+        RegisterComponent,
+        SettingsComponent
+        ,
+        TaskViewComponent],
+    providers: [
+        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
 
-    // provider used to create fake backend
-    // fakeBackendProvider
-  ],
-  bootstrap: [AppComponent]
+        // provider used to create fake backend
+        // fakeBackendProvider
+    ],
+    bootstrap: [AppComponent]
 })
 
 export class AppModule {

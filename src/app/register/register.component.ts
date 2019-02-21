@@ -23,6 +23,11 @@ export class RegisterComponent implements OnInit {
         }
     }
 
+    // convenience getter for easy access to form fields
+    get f() {
+        return this.registerForm.controls;
+    }
+
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
             firstName: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -31,11 +36,6 @@ export class RegisterComponent implements OnInit {
             email: ['', Validators.compose([Validators.required, Validators.email])],
             password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
         });
-    }
-
-    // convenience getter for easy access to form fields
-    get f() {
-        return this.registerForm.controls;
     }
 
     onSubmit() {

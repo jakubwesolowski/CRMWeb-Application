@@ -1,6 +1,6 @@
 <ul class="todos list-group list-group-flush">
-    <li class="list-group-item" *ngFor="let task of tasks" [contextMenu]="taskMenu"
-        [contextMenuSubject]="task">
+    <li *ngFor="let task of tasks" [contextMenuSubject]="task" [contextMenu]="taskMenu"
+        class="list-group-item">
 
         <div class="task">
 
@@ -10,45 +10,45 @@
 
             <div class="pull-right">
                 <div [ngSwitch]="task.priority">
-                    <div class="badge badge-pill badge-secondary toLeft"
-                         *ngSwitchCase="priority.LOW">
+                    <div *ngSwitchCase="priority.LOW"
+                         class="badge badge-pill badge-secondary toLeft">
                         {{task.reminders[0].date}}
-                        <i class="fa fa-calendar-check-o" style="margin: 0 10px 0 0"
-                           aria-hidden="true"></i>
+                        <i aria-hidden="true" class="fa fa-calendar-check-o"
+                           style="margin: 0 10px 0 0"></i>
                         LOW
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        <i aria-hidden="true" class="fa fa-info-circle"></i>
                     </div>
-                    <div class="badge badge-pill badge-primary toLeft"
-                         *ngSwitchCase="priority.MINOR">
+                    <div *ngSwitchCase="priority.MINOR"
+                         class="badge badge-pill badge-primary toLeft">
                         {{task.reminders[0].date}}
-                        <i class="fa fa-calendar-check-o" style="margin: 0 10px 0 0"
-                           aria-hidden="true"></i>
+                        <i aria-hidden="true" class="fa fa-calendar-check-o"
+                           style="margin: 0 10px 0 0"></i>
                         MINOR
-                        <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                        <i aria-hidden="true" class="fa fa-bookmark-o"></i>
                     </div>
-                    <div class="badge badge-pill badge-success toLeft"
-                         *ngSwitchCase="priority.MODERATE">
+                    <div *ngSwitchCase="priority.MODERATE"
+                         class="badge badge-pill badge-success toLeft">
                         {{task.reminders[0].date}}
-                        <i class="fa fa-calendar-check-o" style="margin: 0 10px 0 0"
-                           aria-hidden="true"></i>
+                        <i aria-hidden="true" class="fa fa-calendar-check-o"
+                           style="margin: 0 10px 0 0"></i>
                         MODERATE
-                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                        <i aria-hidden="true" class="fa fa-question-circle"></i>
                     </div>
-                    <div class="badge badge-pill badge-warning toLeft"
-                         *ngSwitchCase="priority.SIGNIFICANT">
+                    <div *ngSwitchCase="priority.SIGNIFICANT"
+                         class="badge badge-pill badge-warning toLeft">
                         {{task.reminders[0].date}}
-                        <i class="fa fa-calendar-check-o" style="margin: 0 10px 0 0"
-                           aria-hidden="true"></i>
+                        <i aria-hidden="true" class="fa fa-calendar-check-o"
+                           style="margin: 0 10px 0 0"></i>
                         SIGNIFICANT
-                        <i class="fa fa-plus-square" aria-hidden="true"></i>
+                        <i aria-hidden="true" class="fa fa-plus-square"></i>
                     </div>
-                    <div class="badge badge-pill badge-danger toLeft"
-                         *ngSwitchCase="priority.REQUIRED">
+                    <div *ngSwitchCase="priority.REQUIRED"
+                         class="badge badge-pill badge-danger toLeft">
                         {{task.reminders[0].date}}
-                        <i class="fa fa-calendar-check-o" style="margin: 0 10px 0 0"
-                           aria-hidden="true"></i>
+                        <i aria-hidden="true" class="fa fa-calendar-check-o"
+                           style="margin: 0 10px 0 0"></i>
                         REQUIRED
-                        <i class="fa fa-exclamation" aria-hidden="true"></i>
+                        <i aria-hidden="true" class="fa fa-exclamation"></i>
                     </div>
                 </div>
 
