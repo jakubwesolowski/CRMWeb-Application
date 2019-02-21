@@ -48,150 +48,20 @@
                 <div class="card-body">
 
                     <h4>Today</h4>
-                    <ul class="todos list-group list-group-flush">
-                        <li class="list-group-item" *ngFor="let task of getTodayTasks()" [contextMenu]="basicMenu"
-                            [contextMenuSubject]="task">
 
-                            <div class="task" *ngIf="task.reminders !== null && task.reminders[0].date == todayDate()">
-
-                                <i (click)="finishTask(task)" class="fa fa-check-circle fa-2x myCenter"></i>
-                                <span class="myMargin">{{task.name}}</span>
-                                <span class="myMargin badge badge-light">{{task.description}}</span>
-
-                                <div class="pull-right">
-                                    <div [ngSwitch]="task.priority">
-                                        <div class="badge badge-pill badge-secondary toLeft"
-                                             *ngSwitchCase="priority.LOW">
-                                            {{task.reminders[0].date}}
-                                            <i class="fa fa-calendar-check-o" style="margin: 0 10px 0 0"
-                                               aria-hidden="true"></i>
-                                            LOW
-                                            <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="badge badge-pill badge-primary toLeft"
-                                             *ngSwitchCase="priority.MINOR">
-                                            {{task.reminders[0].date}}
-                                            <i class="fa fa-calendar-check-o" style="margin: 0 10px 0 0"
-                                               aria-hidden="true"></i>
-                                            MINOR
-                                            <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="badge badge-pill badge-success toLeft"
-                                             *ngSwitchCase="priority.MODERATE">
-                                            {{task.reminders[0].date}}
-                                            <i class="fa fa-calendar-check-o" style="margin: 0 10px 0 0"
-                                               aria-hidden="true"></i>
-                                            MODERATE
-                                            <i class="fa fa-question-circle" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="badge badge-pill badge-warning toLeft"
-                                             *ngSwitchCase="priority.SIGNIFICANT">
-                                            {{task.reminders[0].date}}
-                                            <i class="fa fa-calendar-check-o" style="margin: 0 10px 0 0"
-                                               aria-hidden="true"></i>
-                                            SIGNIFICANT
-                                            <i class="fa fa-plus-square" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="badge badge-pill badge-danger toLeft"
-                                             *ngSwitchCase="priority.REQUIRED">
-                                            {{task.reminders[0].date}}
-                                            <i class="fa fa-calendar-check-o" style="margin: 0 10px 0 0"
-                                               aria-hidden="true"></i>
-                                            REQUIRED
-                                            <i class="fa fa-exclamation" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
-
-                                    <div *ngIf="!task.priority && task.reminders !== null && task.reminders[0].date !== null"
-                                         class="badge badge-pill badge-secondary toLeft">
-                                        {{task.reminders[0].date}}
-                                    </div>
-
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                    <div *ngIf="areTasksLoaded">
+                        <app-task-view [tasks]="getTodayTasks()" [projectId]="currentProject.id"></app-task-view>
+                    </div>
 
                     <br>
                     <h4>Next 7 days</h4>
-                    <ul class="todos list-group list-group-flush">
-                        <li class="list-group-item" *ngFor="let task of getNext7Days()" [contextMenu]="basicMenu"
-                            [contextMenuSubject]="task">
 
-                            <div class="task">
-                                <i (click)="finishTask(task)" class="fa fa-check-circle fa-2x myCenter"></i>
-                                <span class="myMargin">{{task.name}}</span>
-                                <span class="myMargin badge badge-light">{{task.description}}</span>
-
-                                <div class="pull-right">
-                                    <div [ngSwitch]="task.priority">
-                                        <div class="badge badge-pill badge-secondary toLeft"
-                                             *ngSwitchCase="priority.LOW">
-                                            <div class="toLeft" *ngIf="task.reminders[0].date">
-                                                {{task.reminders[0].date}}
-                                                <i class="fa fa-calendar-check-o" style="margin: 0 10px 0 0"
-                                                   aria-hidden="true"></i>
-                                            </div>
-                                            LOW
-                                            <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="badge badge-pill badge-primary toLeft"
-                                             *ngSwitchCase="priority.MINOR">
-                                            <div class="toLeft" *ngIf="task.reminders[0].date">
-                                                {{task.reminders[0].date}}
-                                                <i class="fa fa-calendar-check-o" style="margin: 0 10px 0 0"
-                                                   aria-hidden="true"></i>
-                                            </div>
-                                            MINOR
-                                            <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="badge badge-pill badge-success toLeft"
-                                             *ngSwitchCase="priority.MODERATE">
-                                            <div class="toLeft" *ngIf="task.reminders[0].date">
-                                                {{task.reminders[0].date}}
-                                                <i class="fa fa-calendar-check-o" style="margin: 0 10px 0 0"
-                                                   aria-hidden="true"></i>
-                                            </div>
-                                            MODERATE
-                                            <i class="fa fa-question-circle" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="badge badge-pill badge-warning toLeft"
-                                             *ngSwitchCase="priority.SIGNIFICANT">
-                                            <div class="toLeft" *ngIf="task.reminders[0].date">
-                                                {{task.reminders[0].date}}
-                                                <i class="fa fa-calendar-check-o" style="margin: 0 10px 0 0"
-                                                   aria-hidden="true"></i>
-                                            </div>
-                                            SIGNIFICANT
-                                            <i class="fa fa-plus-square" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="badge badge-pill badge-danger toLeft"
-                                             *ngSwitchCase="priority.REQUIRED">
-                                            <div class="toLeft" *ngIf="task.reminders[0].date">
-                                                {{task.reminders[0].date}}
-                                                <i class="fa fa-calendar-check-o" style="margin: 0 10px 0 0"
-                                                   aria-hidden="true"></i>
-                                            </div>
-                                            REQUIRED
-                                            <i class="fa fa-exclamation" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
-
-                                    <div *ngIf="!task.priority && task.reminders !== null && task.reminders[0].date !== null"
-                                         class="badge badge-pill badge-secondary toLeft">
-                                        {{task.reminders[0].date}}
-                                    </div>
-
-                                </div>
-
-
-                            </div>
-                        </li>
-                    </ul>
+                    <div *ngIf="areTasksLoaded">
+                        <app-task-view [tasks]="getNext7Days()" [projectId]="currentProject.id"></app-task-view>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -200,64 +70,6 @@
     <p>Weather for today</p>
 </div>
 <weather-widget class="weather" [settings]="settings"></weather-widget>
-
-<ng-template contextMenuItem #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Task name</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-
-    <div class="modal-body">
-        <form>
-            <div class="form-group">
-
-                <label for="taskName">Task name</label>
-                <input id="taskName" class="form-control" [(ngModel)]="editedTask.name" name="taskName">
-                <br>
-                <label for="description">Description</label>
-                <input id="description" class="form-control" [(ngModel)]="editedTask.description" name="description">
-                <br>
-                <label for="description">Due date</label>
-                <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd"
-                           name="dp" [(ngModel)]="datePick" ngbDatepicker #d="ngbDatepicker">
-                    <button class="btn btn-outline-secondary fa fa-calendar" (click)="d.toggle()"
-                            type="button"></button>
-                </div>
-                <br>
-
-                <select class="form-control" [(ngModel)]="editedTask.priority" name="newPriority">
-                    <option *ngFor="let p of priorityValues" [ngValue]="priority[p]">{{p}}</option>
-                </select>
-            </div>
-
-        </form>
-    </div>
-
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="saveEditedTask(); modal.close('Save click')">Save
-        </button>
-    </div>
-</ng-template>
-
-<context-menu #basicMenu>
-    <ng-template contextMenuItem (execute)="editedTask = $event.item; open(content)">
-        <i class="fa fa-pencil"></i>
-        <span> Edit task</span>
-    </ng-template>
-    <ng-template contextMenuItem
-                 (execute)="editedTask = $event.item; editedTask.reminders[0].date = todayDate() ; saveEditedTask();">
-        <i class="fa fa-clock-o"></i>
-        <span> Today?</span>
-    </ng-template>
-    <ng-template contextMenuItem
-                 (execute)="editedTask = $event.item; editedTask.reminders[0].date = tomorrowDate() ; saveEditedTask();">
-        <i class="fa fa-calendar-plus-o"></i>
-        <span> Tomorrow?</span>
-    </ng-template>
-</context-menu>
 
 <context-menu #projectMenu>
     <ng-template contextMenuItem (execute)="removeProject($event.item)">

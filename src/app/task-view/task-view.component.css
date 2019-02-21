@@ -32,6 +32,7 @@
     transform: scale(1.01);
 }
 
+
 .taskVisible {
     visibility: visible;
     opacity: 1;
@@ -43,8 +44,3 @@
     opacity: 0;
     transition: visibility 0s 2s, opacity 2s linear;
 }
-
-/*.badge-secondary{*/
-/*float: left;*/
-/*}*/
-
